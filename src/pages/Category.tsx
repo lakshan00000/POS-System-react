@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryType from "../types/CategoryType";
+import itemsIcon from "../icon/user icon.png";
 
 function Category() {
     const [categories, setCategories] = useState([]);
@@ -32,19 +33,28 @@ function Category() {
         }
     }
 
+    async function deleteCategory(categoryId: number) {
+        try {
+            await axios.delete(`http://localhost:8081/categories/${categoryId}`);
+            loadCategories();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         loadCategories();
     }, []);
 
     return (
         <div className="min-h-screen bg-yellow-100 flex">
-            {/* Sidebar */}
+            
             <aside className="w-64 bg-gray-800 text-white flex flex-col items-center py-6">
-                <img
-                    src="https://via.placeholder.com/100"
-                    alt="User Avatar"
-                    className="rounded-full mb-4"
-                />
+            <img
+                                src={itemsIcon}
+                                alt="Items Icon"
+                                className="w-10 h-10"
+                            />
                 <h1 className="text-xl font-semibold mb-6">Lakshan</h1>
                 <nav className="w-full">
                     <Link to="/" className="block p-4 hover:bg-gray-700">Home</Link>
@@ -56,11 +66,11 @@ function Category() {
                 </nav>
             </aside>
 
-            {/* Main Content */}
+           
             <div className="flex-1 bg-white shadow-md rounded-lg p-6 mx-8">
                 <h1 className="text-2xl font-bold mb-4 text-center text-blue-600">Category Management</h1>
 
-                {/* Load Categories Button */}
+               
                 <div className="mb-6 flex justify-center">
                     <button
                         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
@@ -69,8 +79,6 @@ function Category() {
                         Load Categories
                     </button>
                 </div>
-
-                {/* Categories Display */}
 
                 <div className="overflow-x-auto bg-white shadow rounded-lg">
                     <h2 className="text-xl font-semibold text-gray-700 mb-3 p-4 border-b border-gray-200">
@@ -92,7 +100,7 @@ function Category() {
                                         <td className="border border-gray-300 px-4 py-2">{category.name}</td>
                                         
                                         <td className="border border-gray-300 px-4 py-2">
-                                            <button className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-200">
+                                            <button onClick={() => deleteCategory(category.id)}className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-200">
                                                 Delete
                                             </button>
                                         </td>

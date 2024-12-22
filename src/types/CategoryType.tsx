@@ -1,7 +1,7 @@
 interface CategoryType{
 
-    id : Number;
-    name: String;
+    id : number;
+    name: string;
 
 }
 

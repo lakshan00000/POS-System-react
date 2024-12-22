@@ -1,10 +1,10 @@
 import CategoryType from "./CategoryType";
 
 interface ProductType{
- id: Number;
- name:String;
- price:Number;
- qty:Number;
+ id: number;
+ name:string;
+ price:number;
+ description:string;
  category:CategoryType;
  
 
