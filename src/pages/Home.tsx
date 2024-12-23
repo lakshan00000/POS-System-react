@@ -78,7 +78,7 @@ function Dashboard() {
                             <h3 className="text-lg font-medium text-gray-700">Stock</h3>
                         </div>
                     </Link>
-                    <Link to="/Create">
+                    <Link to="/Order/Create">
                         <div className="p-4 bg-white rounded-lg shadow hover:shadow-lg transition flex items-center gap-4">
                             <img
                                 src={createOrdersIcon}
